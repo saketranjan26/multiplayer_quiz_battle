@@ -1,20 +1,18 @@
-"use client"
-import { signIn, signOut, useSession } from "next-auth/react"
+
+import { Button } from "./button";
 
 
 export const Appbar = ()=>{
-    const session = useSession();
+    
     return(
-        <div className="flex justify-between border">
+        <div className="flex justify-between border border-slate-300">
             <div className="mx-1 my-1 flex content-center">
                 <div className="content-center">
                     <BrainIcon className="h-8 w-8" />
                 </div>            
             </div>
             <div className="mx-1 my-1">
-                <button onClick = { async () => {session.status ==="authenticated" ? await signOut({callbackUrl:"/"}) : await signIn(undefined,{callbackUrl:'/dashboard'})}}type="button" className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white  hover:bg-black/80 ">
-                    {session.status ==="authenticated" ? "Logout" :"Signin"}
-                </button>
+                <Button children={null}/>
             </div>
         </div>
     )
