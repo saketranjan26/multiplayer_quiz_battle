@@ -27,6 +27,9 @@ model Quiz {
   questions Question[]
   author User @relation(fields: [authorId],references: [id])
   authorId String
+  quizDurationHour Int
+  quizDurationMin Int
+  numberOfQuestion Int
 }
 
 model Question {

@@ -4,8 +4,10 @@ export default  function Battles  () {
 
 
     return (
-        <div>
+        <div className="flex justify-center w-full h-auto">
+            <div className="my-4">
             <CreateQuiz/>
+            </div>
         </div>
     )
 }

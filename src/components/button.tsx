@@ -1,13 +1,19 @@
-"use client"
-import { signIn, signOut, useSession } from "next-auth/react"
-import { ReactNode } from "react";
+import { MouseEventHandler, ReactNode } from "react"
 
-export  const Button = ({children}:{children:ReactNode}) => {
-    const session = useSession();
-    return(
-        <button onClick = { async () => {session.status ==="authenticated" ? await signOut({callbackUrl:"/"}) : await signIn(undefined,{callbackUrl:'/dashboard'})}}type="button" className="rounded-md bg-black px-8 py-2 text-base font-semibold text-white  hover:bg-black/80 ">
-                    {children ? children :session.status ==="authenticated" ? "Logout" :"Signin"}
-                </button>
+export const Button = (
+    {
+        onClickfunction,
+        children
+    }:{
+        onClickfunction:Promise<React.JSX.Element>,
+        children:ReactNode
+    }
+) =>{
+    return (
+        <div>
+            <button onClick={onClickfunction}  className="rounded-md bg-slate-500 px-8 mt-4 py-2 w-full  font-semibold text-white  hover:bg-slate-600 ">
+                {children}
+            </button>
+        </div>
     )
-
 }
