@@ -5,7 +5,7 @@ export const Button = (
         onClickfunction,
         children
     }:{
-        onClickfunction:Promise<React.JSX.Element>,
+        onClickfunction:MouseEventHandler<HTMLButtonElement>,
         children:ReactNode
     }
 ) =>{

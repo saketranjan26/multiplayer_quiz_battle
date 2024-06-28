@@ -1,4 +1,4 @@
-import { Button } from "./loginButton";
+import { LoginButton } from "./loginButton";
 
 export default function LandingTop() {
   return (
@@ -17,7 +17,7 @@ export default function LandingTop() {
               </p>
             </div>
             <div className="flex flex-col gap-2 min-[400px]:flex-row">
-              <Button children={"Let's Battle"} />
+              <LoginButton children={"Let's Battle"} />
             </div>
           </div>
           <img

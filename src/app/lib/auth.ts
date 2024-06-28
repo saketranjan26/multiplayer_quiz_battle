@@ -1,6 +1,8 @@
 import  CredentialsProvider  from "next-auth/providers/credentials"
 import bcrypt from "bcrypt"
 import  {PrismaClient}  from "@prisma/client"
+import { Awaitable, DefaultSession, Session } from "next-auth"
+import { JWT } from "next-auth/jwt"
 
 const prisma = new PrismaClient()
 export const authOptions = {
@@ -51,6 +53,12 @@ export const authOptions = {
             }    
         })
     ],
-    secret: process.env.JWT_SECRET
+    secret: process.env.JWT_SECRET,
+    callbacks:{
+         session:({session,token}:{session:any,token:JWT})=>{
+            session.user.id = token.sub
+            return session
+         }
+    }
 }
 
