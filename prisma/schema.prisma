@@ -30,6 +30,7 @@ model Quiz {
   quizDurationHour Int
   quizDurationMin Int
   numberOfQuestion Int
+  status Boolean @default(false)
 }
 
 model Question {
