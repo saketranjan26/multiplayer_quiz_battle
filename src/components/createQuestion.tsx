@@ -1,8 +1,9 @@
 import { useState } from "react";
 import InputBox from "./inputBox";
 import { Button } from "./button";
+import { createQuestion } from "@/app/lib/actions/question";
 
-export default function CreateQuestion({questionNumber}:{questionNumber:string}){
+export default function CreateQuestion({numberOfQuestions}:{numberOfQuestions:number}){
     const [question,setQuestion] = useState(String)
     const [optionA, setOptionA] = useState(String)
     const [optionB, setOptionB] = useState(String)
@@ -10,15 +11,16 @@ export default function CreateQuestion({questionNumber}:{questionNumber:string})
     const [optionD, setOptionD] = useState(String)
     const [correctOption, setCorrectOption] = useState(String)
     const [tick,setTick] = useState(Number)
-    console.log(question)
+    
     return (
-        <div className="bg-slate-200 mx-3">
-            <label className="block my-1 text-md font-medium text-gray-900">{"Question "+questionNumber}</label>
+        <div className="bg-slate-200 mx-3 my-3">
+            <label className="block my-1 text-md font-medium text-gray-900">{"Question "+numberOfQuestions}</label>
             <textarea value={question} id="message" onChange={(e)=>{setQuestion(e.target.value)}} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-slate-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here"></textarea>
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-3 ">
                 <div className="flex items-center">
                 <InputBox value={optionA} placeholder="Option A"  setState={setOptionA}/>
                     <input type="checkbox"  
+                        value={tick}
                         onChange={()=>{
                             setTick(1); 
                             setCorrectOption(optionA)
@@ -29,7 +31,8 @@ export default function CreateQuestion({questionNumber}:{questionNumber:string})
                 </div>
                 <div className="flex items-center">
                 <InputBox value={optionB} placeholder="Option B"  setState={setOptionB}/>
-                    <input type="checkbox"  
+                    <input type="checkbox" 
+                        value={tick} 
                         onChange={()=>{
                             setTick(2); 
                             setCorrectOption(optionB)
@@ -39,7 +42,8 @@ export default function CreateQuestion({questionNumber}:{questionNumber:string})
                 </div>
                 <div className="flex items-center">
                 <InputBox value={optionC} placeholder="Option C"  setState={setOptionC}/>
-                    <input type="checkbox"  
+                    <input type="checkbox"
+                        value={tick}  
                         onChange={()=>{
                             setTick(3); 
                             setCorrectOption(optionC)
@@ -49,7 +53,8 @@ export default function CreateQuestion({questionNumber}:{questionNumber:string})
                 </div>
                 <div className="flex items-center">
                     <InputBox value={optionD} placeholder="Option D"  setState={setOptionD}/>
-                    <input type="checkbox"  
+                    <input type="checkbox" 
+                        value={tick} 
                         onChange={()=>{
                             setTick(4); 
                             setCorrectOption(optionD)
@@ -58,9 +63,13 @@ export default function CreateQuestion({questionNumber}:{questionNumber:string})
                         className="w-4 h-4 bg-gray-50 border-slate-300 rounded  "></input>                   
                 </div>
             </div>
-            <div className=" flex">
+            <div className=" flex mb-14 ">
                 <div>
-                <Button onClick={()=>{}} children={"Save"}/>
+                <Button onClick={()=>{
+                    let quizId = localStorage.getItem("quizId") 
+                    console.log(quizId)
+                    createQuestion(question,optionA,optionB,optionC,optionD,correctOption,quizId)
+                }} children={"Save"}/>
                 </div>
                     
                 <div className="mx-2">
@@ -71,6 +80,7 @@ export default function CreateQuestion({questionNumber}:{questionNumber:string})
                     setOptionB("");
                     setOptionC("");
                     setOptionD("");
+                    setTick(8)
                     }} children={"Reset"}/>
                 </div>
             </div>

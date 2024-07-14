@@ -3,6 +3,7 @@
 import { PrismaClient } from "@prisma/client";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../auth";
+import { pusherServer } from "../pushar";
 
 const prisma = new PrismaClient();
 
@@ -22,6 +23,7 @@ export  async function createQuiz(quizName:string,hours:number,minutes:number,qu
 
             }
         })
+        pusherServer.trigger(session.user.id,'incoming-quiz',quiz)
         
         return ( quiz.id
             
@@ -35,7 +37,7 @@ export  async function createQuiz(quizName:string,hours:number,minutes:number,qu
 }
 
 
-export async function getQuiz(){
+export async function getQuizes(){
     
     const session = await getServerSession(authOptions);
 
@@ -45,7 +47,6 @@ export async function getQuiz(){
                 authorId: session.user.id
             }
         })
-        console.log(quizes)
         return quizes
     }catch(e){
         console.log(e)

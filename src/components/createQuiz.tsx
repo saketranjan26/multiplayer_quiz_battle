@@ -11,7 +11,6 @@ export default function CreateQuiz(){
     const [hours,setHours] = useState(0)
     const [minutes,setMinutes] = useState(10)
     const [questionNumber,setQuestionNumber]= useState(5)
-    const router = useRouter();
    
     return (
         <div>
@@ -32,7 +31,8 @@ export default function CreateQuiz(){
                     </div>  
                     <Button onClick={async ()=>{
                         const quiz = await createQuiz(quizName,hours,minutes,questionNumber)
-                        router.push("/dashboard")
+                        //router.push("/dashboard")
+                        localStorage.setItem("quizId",quiz)
                         return(
                             <div>
                                 quiz created successfully

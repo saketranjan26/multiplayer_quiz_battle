@@ -9,9 +9,9 @@ export default function Layout({
     return(
         <div>
             <div className="flex">
-                <div className="w-72 border-r border-slate-300 min-h-screen  pt-20">
-                    <SidebarItem href="/dashboard" title="Home" icon/>
-                    <SidebarItem href="/battles" title="Battles" icon/>
+                <div className="w-60 border-r border-slate-300 min-h-screen  pt-12">
+                    <SidebarItem href="/home" title="Home" icon/>
+                    <SidebarItem href="/createQuiz" title="Create Quiz" icon/>
                     <SidebarItem href="/more" title="More" icon/>
                 </div>
                 {children}
