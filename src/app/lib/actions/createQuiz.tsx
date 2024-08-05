@@ -23,7 +23,7 @@ export  async function createQuiz(quizName:string,hours:number,minutes:number,qu
 
             }
         })
-        pusherServer.trigger(session.user.id,'incoming-quiz',quiz)
+        pusherServer.trigger(session.user.id,'created-quiz',quiz)
         
         return ( quiz.id
             
@@ -63,6 +63,7 @@ export async function deleteQuiz(quizId:string){
                 id:quizId
             }
         })
+        pusherServer.trigger(session.user.id,'deleted-quiz',quizId)
         return {
             message:"deleted successfully"
         }

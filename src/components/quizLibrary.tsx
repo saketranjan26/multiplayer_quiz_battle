@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { useEffect, useState } from "react";
 import { pusherClient } from "@/app/lib/pushar";
 import Actions from "./actions";
@@ -22,19 +22,25 @@ interface QuizProps {
 // }
 
 export default function QuizLibrary({ userId, quiz }: QuizProps) {
-  const [incomingQuiz, setIncomingQuiz] = useState<QuizBaseProps[]>([]);
+  const [quizzes, setQuizzes] = useState<QuizBaseProps[]>(quiz);
 
   useEffect(() => {
+    localStorage.setItem("userId", userId);
     const channel = pusherClient.subscribe(userId);
-    
+
     const handleIncomingQuiz = (quiz: QuizBaseProps) => {
-      setIncomingQuiz((prev) => [...prev, quiz]);
+      setQuizzes((prev) => [...prev, quiz]);
+    };
+    const handleDeletedQuiz = (deletedQuizId: string) => {
+      setQuizzes((prev) => prev.filter((quiz) => quiz.id !== deletedQuizId));
     };
 
-    channel.bind('incoming-quiz', handleIncomingQuiz);
+    channel.bind("created-quiz", handleIncomingQuiz);
+    channel.bind("deleted-quiz", handleDeletedQuiz);
 
     return () => {
-      channel.unbind('incoming-quiz', handleIncomingQuiz);
+      channel.unbind("created-quiz", handleIncomingQuiz);
+      channel.unbind("deleted-quiz", handleDeletedQuiz);
       pusherClient.unsubscribe(userId);
     };
   }, [userId]);
@@ -42,17 +48,7 @@ export default function QuizLibrary({ userId, quiz }: QuizProps) {
   return (
     <>
       <div>
-        {incomingQuiz.map((quizItem) => (
-          <Quiz
-            key={quizItem.id}
-            name={quizItem.name}
-            status={quizItem.status}
-            id={quizItem.id}
-          />
-        ))}
-      </div>
-      <div>
-        {quiz.map((quizItem) => (
+        {quizzes.map((quizItem) => (
           <Quiz
             key={quizItem.id}
             name={quizItem.name}
@@ -65,7 +61,7 @@ export default function QuizLibrary({ userId, quiz }: QuizProps) {
   );
 }
 
-function Quiz({ name, status, id }: QuizBaseProps) {
+function Quiz({ name, id }: QuizBaseProps) {
   return (
     <div className="border mx-2 aspect-auto bg-slate-50 overflow-hidden border-slate-300">
       <div className="mx-4 text-slate-600">

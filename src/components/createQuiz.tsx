@@ -4,7 +4,7 @@ import InputBox from "./inputBox";
 import NumberInput from "./numberInput";
 import { Button } from "./button";
 import {createQuiz} from "@/app/lib/actions/createQuiz";
-import { useRouter } from "next/navigation";
+
 
 export default function CreateQuiz(){
     const [quizName, setQuizName] = useState("quiz")
@@ -19,7 +19,7 @@ export default function CreateQuiz(){
                     Create your quiz 
                 </div>            
                 <div className=" pt-3 flex-row">
-                    <InputBox value={quizName} label="Name" placeholder="Your quiz name" setState={setQuizName}/>
+                    <InputBox value={quizName} label="Name" placeholder="React quiz" setState={setQuizName}/>
                     <label  className="block mb-2 px-3 font-medium text-slate-800">Select no. of questions </label>
                         <NumberInput para="Please select between 1-200." number={questionNumber}  setNumber={setQuestionNumber}/>
                     <label  className="block mb-2 mt-4 px-3 font-medium text-slate-800">Select quiz duration </label>

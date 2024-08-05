@@ -71,7 +71,7 @@ const router = useRouter();
                         
                         
                     </div>
-                    <Button children="Save the Quiz" onClick={()=>{router.push("/dashboard")}}/>
+                    <Button children="Save the Quiz" onClick={()=>{router.push("/home")}}/>
                 </>
                 )}             
             </div>          

@@ -41,7 +41,7 @@ model Question {
   optionC String
   optionD String
   correctOption String
-  quiz Quiz @relation(fields: [quizId],references: [id])
+  quiz Quiz @relation(fields: [quizId],references: [id], onDelete: Cascade)
   quizId String
 }
 
