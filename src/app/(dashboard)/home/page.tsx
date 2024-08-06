@@ -1,4 +1,4 @@
-import { getQuizes } from "@/app/lib/actions/createQuiz";
+import { getQuizes } from "@/app/lib/actions/quiz";
 import { authOptions } from "@/app/lib/auth";
 import JoinQuiz from "@/components/joinQuiz";
 import QuizLibrary from "@/components/quizLibrary";

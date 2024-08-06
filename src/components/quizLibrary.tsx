@@ -7,6 +7,7 @@ interface QuizBaseProps {
   name: string;
   status: boolean;
   id: string;
+  authorId: string;
 }
 
 interface QuizProps {
@@ -54,6 +55,7 @@ export default function QuizLibrary({ userId, quiz }: QuizProps) {
             name={quizItem.name}
             status={quizItem.status}
             id={quizItem.id}
+            authorId={quizItem.authorId}
           />
         ))}
       </div>
@@ -61,7 +63,7 @@ export default function QuizLibrary({ userId, quiz }: QuizProps) {
   );
 }
 
-function Quiz({ name, id }: QuizBaseProps) {
+function Quiz({ name, id,authorId }: QuizBaseProps) {
   return (
     <div className="border mx-2 aspect-auto bg-slate-50 overflow-hidden border-slate-300">
       <div className="mx-4 text-slate-600">
@@ -73,7 +75,7 @@ function Quiz({ name, id }: QuizBaseProps) {
             {id}
           </div>
           <div className="flex font-medium justify-center text-base text-slate-500 aspect-auto overflow-hidden ml-6 w-auto">
-            <Actions quizId={id} />
+            <Actions quizId={id} author_id={authorId} />
           </div>
         </div>
       </div>

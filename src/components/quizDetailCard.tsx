@@ -24,7 +24,7 @@ export default async function QuizDetailCard({ quizId }: { quizId: string }) {
                 <div className="grid gap-1">
                   <h3 className="text-xl font-semibold">{quiz?.name}</h3>
                   <p className="text-sm text-muted-foreground">
-                    {quiz?.id}
+                    ID: {quiz?.id}
                   </p>
                 </div>
               </div>

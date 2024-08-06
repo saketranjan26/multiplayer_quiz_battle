@@ -1,5 +1,5 @@
 "use client"
-import { deleteQuiz } from "@/app/lib/actions/createQuiz"
+import { deleteQuiz } from "@/app/lib/actions/quiz"
 import { Button } from "./button"
 import { useRouter } from "next/navigation"
 import {  launchLobby } from "@/app/lib/actions/lobby";
@@ -7,7 +7,11 @@ import { useSession } from "next-auth/react";
 import { gameManager } from "@/app/lib/store";
 import { json } from "stream/consumers";
 
-export default  function Actions ({quizId}:{quizId:string}){
+interface actionProps{
+    quizId:string,
+    author_id:string
+}
+export default  function Actions ({quizId,author_id}:actionProps){
     const router = useRouter();
     const session = useSession();
     
@@ -29,6 +33,7 @@ export default  function Actions ({quizId}:{quizId:string}){
                                             array and will use JSON.parse() method to convert it back to array
                                             */ 
                                             localStorage.setItem("prePlayers",playerString)
+                                            localStorage.setItem("authorId",author_id);
                                             router.push(`/arena/${quizId}`)
                                            }}/>
                 </div>

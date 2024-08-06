@@ -50,7 +50,7 @@ export async function getQuizes(){
         return quizes
     }catch(e){
         console.log(e)
-        return [{name:"Can't able to get your quiz",status:false,id:""}]
+        return [{name:"Can't able to get your quiz",status:false,id:"",authorId:""}]
     }
 }
 
@@ -73,4 +73,8 @@ export async function deleteQuiz(quizId:string){
             message:"problem occured while deleting"
         }
     }
+}
+
+export async function launchQuiz(quizId:string){
+    await pusherServer.trigger(quizId,"start-quiz","")
 }

@@ -3,7 +3,7 @@ import InputBox from "./inputBox";
 import { Button } from "./button";
 import { createQuestion } from "@/app/lib/actions/question";
 
-export default function CreateQuestion({numberOfQuestions}:{numberOfQuestions:number}){
+export default function CreateQuestion({questionNumber}:{questionNumber:number}){
     const [question,setQuestion] = useState(String)
     const [optionA, setOptionA] = useState(String)
     const [optionB, setOptionB] = useState(String)
@@ -14,7 +14,7 @@ export default function CreateQuestion({numberOfQuestions}:{numberOfQuestions:nu
     
     return (
         <div className="bg-slate-200 mx-3 my-3">
-            <label className="block my-1 text-md font-medium text-gray-900">{"Question "+numberOfQuestions}</label>
+            <label className="block my-1 text-md font-medium text-gray-900">{"Question "+questionNumber}</label>
             <textarea value={question} id="message" onChange={(e)=>{setQuestion(e.target.value)}} className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-slate-300 focus:ring-blue-500 focus:border-blue-500" placeholder="Type your question here"></textarea>
             <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mt-3 ">
                 <div className="flex items-center">

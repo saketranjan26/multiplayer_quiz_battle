@@ -27,3 +27,17 @@ export async function createQuestion(question:string,optionA:string,optionB:stri
         }
     } 
 }
+
+export async function getQuestions(quizId:string){
+    try{
+        const questions = await prisma.question.findMany({
+            where:{
+                quizId:quizId
+            }
+        })
+        return questions
+    }catch(e){
+        console.log(e)
+    }
+}
+

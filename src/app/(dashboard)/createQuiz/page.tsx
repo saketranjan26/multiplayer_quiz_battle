@@ -3,7 +3,7 @@ import { useState } from "react";
 import InputBox from "@/components/inputBox";
 import NumberInput from "@/components/numberInput";
 import { Button } from "@/components/button";
-import {createQuiz} from "@/app/lib/actions/createQuiz";
+import {createQuiz} from "@/app/lib/actions/quiz";
 import { useRouter } from "next/navigation";
 import CreateQuestion from "@/components/createQuestion";
 
@@ -65,7 +65,7 @@ const router = useRouter();
                     <div className=" mx-3 mt-5 aspect-auto overflow-hidden border shadow-xl border-slate-300 rounded-md w-full h-auto bg-slate-200 ">
                         {
                             Array.from({length:numberOfQuestions},(_,id)=>(
-                                <CreateQuestion numberOfQuestions={id+1}/>
+                                <CreateQuestion questionNumber={id+1}/>
                             ))
                         }
                         
