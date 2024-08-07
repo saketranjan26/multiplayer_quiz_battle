@@ -18,11 +18,18 @@ export const Question = ({ questionNumber, question }: props) => {
   const [correctOption, setCorrectOption] = useState(String);
   const [tick, setTick] = useState(Number);
   const [Check, setCheck] = useState(String);
+  const [buttonRender,setButtonRender]= useState(true)
+  //let score = 0;
 
   function check() {
-    if (correctOption === question.correctOption)
+    if (correctOption === question.correctOption){
       setCheck(`${correctOption} is correct`);
-    else setCheck(`${correctOption} is wrong`);
+      //score= score+4;
+    }
+    else {
+      setCheck(`${correctOption} is wrong`);
+     // score--;
+    }
   }
 
   return (
@@ -86,16 +93,17 @@ export const Question = ({ questionNumber, question }: props) => {
         </div>
       </div>
       <div className="flex items-center">
-        <button
+        {buttonRender && <button
           onClick={() => {
             let quizId = localStorage.getItem("quizId");
             console.log(quizId);
             const res = check();
+            setButtonRender(false)
           }}
           className="rounded-md bg-slate-500 px-10 mx-1.5  py-2   font-semibold text-white  hover:bg-slate-600 "
         >
           Save
-        </button>
+        </button>}
         {Check === `${correctOption} is correct` && (
           <div className="bg-green-600 text-green-200 rounded-md px-2 py-2">
             Correct!

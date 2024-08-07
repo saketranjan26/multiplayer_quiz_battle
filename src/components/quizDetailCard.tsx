@@ -31,6 +31,7 @@ export default async function QuizDetailCard({ quizId }: { quizId: string }) {
               <div className="grid gap-2">
                 <Detail name="No. of Questions" detail={quiz?.numberOfQuestion} />
                 <Detail name=" Quiz Duration"detail={`${quiz?.quizDurationHour} hour ${quiz?.quizDurationMin} ${" "} minutes`} />
+                {/* <Detail name="Marking Scheme" detail={`+4 for correct, -1 for wrong`}/> */}
               </div>
             </div>
           </div>
